@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="sq">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio i Bleart Racaj: web, front-end, rrjeta, media sociale dhe punë me AI.">
+<style>body{margin:0}</style>
+<title>Bleart Racaj</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: një kolonë e gjerë, titull i madh, seksione si ruta e rrjetit (traceroute) */
+:root {
+  --bg: #F2F4F8;
+  --surface: #FFFFFF;
+  --ink: #0F1A2B;
+  --muted: #55627A;
+  --line: #D5DBE6;
+  --accent: #2748E0;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #E4E9FC;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1220; --surface: #131B2E; --ink: #E8EDF7; --muted: #8E9BB5;
+    --line: #243049; --accent: #8AA0FF; --accent-ink: #0C1220; --accent-soft: #1B2547;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1220; --surface: #131B2E; --ink: #E8EDF7; --muted: #8E9BB5;
+  --line: #243049; --accent: #8AA0FF; --accent-ink: #0C1220; --accent-soft: #1B2547;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-inline: 20px;
+  padding-block: 24px 64px;
+}
+.wrap { max-width: 980px; margin-inline: auto; display: flex; flex-direction: column; gap: 72px; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Header */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.top .label b { color: var(--accent); font-weight: 500; }
+nav { display: flex; gap: 20px; flex-wrap: wrap; }
+nav a { color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; }
+nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 6.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 16px 0 24px;
+  text-wrap: balance;
+}
+.hero h1 span { color: var(--accent); }
+.hero p.lead { font-size: 1.2rem; max-width: 34ch; margin: 0 0 28px; color: var(--ink); }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.btn {
+  font-family: var(--font-body); font-weight: 600; font-size: 15px;
+  border-radius: 8px; padding: 12px 18px; cursor: pointer; text-decoration: none;
+  border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.08); }
+.graph { width: 100%; height: auto; max-width: 100%; }
+.graph line { stroke: var(--line); stroke-width: 1.5; }
+.graph .hot { stroke: var(--accent); }
+.graph circle { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.graph circle.hot { stroke: var(--accent); fill: var(--accent-soft); }
+.graph circle.core { fill: var(--accent); stroke: var(--accent); }
+.graph text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+
+/* Sections */
+section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 8px 0 28px;
+  text-wrap: balance;
+}
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+.about p { margin: 0 0 16px; max-width: 60ch; }
+.facts { display: grid; gap: 0; border-top: 1px solid var(--line); align-self: start; }
+.facts div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.facts dt, .facts dd { margin: 0; }
+.facts dt { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.facts dd { text-align: right; font-weight: 500; }
+.facts { margin: 0; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.skill { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; min-width: 0; }
+.skill h3 { font-family: var(--font-display); font-size: 1.2rem; margin: 0 0 4px; }
+.skill p { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags span {
+  font-family: var(--font-mono); font-size: 12.5px; padding: 4px 10px;
+  border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+}
+
+/* Route (traceroute-style) */
+.route { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.route .head { padding: 12px 20px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; color: var(--muted); overflow-x: auto; white-space: nowrap; }
+.hop { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 16px; padding: 20px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.hop:last-child { border-bottom: 0; }
+.hop .kind { font-family: var(--font-mono); font-size: 13px; color: var(--accent); }
+.hop h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0 0 2px; }
+.hop p { margin: 0; color: var(--muted); font-size: 15.5px; }
+.hop .ok { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.hop .ok::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
+.project { border-top: 2px solid var(--ink); padding-top: 16px; min-width: 0; }
+.project .label { margin-bottom: 10px; display: block; }
+.project h3 { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.2; margin: 0 0 8px; }
+.project p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+/* Contact */
+.contact { background: var(--ink); color: var(--bg); border-radius: 16px; padding: clamp(24px, 5vw, 48px); display: grid; gap: 20px; }
+.contact h2 { margin: 0; color: var(--bg); }
+.contact .label { color: var(--bg); opacity: 0.7; }
+.mail { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.mail code {
+  font-family: var(--font-mono); font-size: clamp(0.95rem, 3.6vw, 1.2rem);
+  background: color-mix(in srgb, var(--bg) 14%, transparent); padding: 10px 14px; border-radius: 8px;
+  overflow-wrap: anywhere; user-select: all;
+}
+.contact .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+.contact small { opacity: 0.7; font-size: 14px; }
+footer { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 760px) {
+  .hero, .about { grid-template-columns: minmax(0, 1fr); }
+  .graph { max-width: 340px; }
+  .hop { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .wrap { gap: 56px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="label"><b>●</b> Prishtinë, Kosovë</span>
+    <nav aria-label="Seksionet">
+      <a href="#rreth">Rreth meje</a>
+      <a href="#aftesi">Aftësi</a>
+      <a href="#rruga">Rruga ime</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <main style="display:flex;flex-direction:column;gap:72px;">
+    <section class="hero" aria-labelledby="emri">
+      <div>
+        <span class="label">Portfolio · Shkenca Kompjuterike dhe Inxhinieri</span>
+        <h1 id="emri">Bleart <span>Racaj</span></h1>
+        <p class="lead">Dizajnoj dhe ndërtoj faqe interneti, kuptoj rrjetat kompjuterike dhe punoj çdo ditë me mjete AI.</p>
+        <div class="cta">
+          <a class="btn" href="#kontakt">Më kontakto</a>
+          <a class="btn ghost" href="#projekte">Shiko punët</a>
+        </div>
+      </div>
+      <svg class="graph" viewBox="0 0 360 300" role="img" aria-label="Diagram rrjeti me Bleartin në qendër të aftësive: web, rrjeta, media sociale, AI">
+        <line x1="180" y1="150" x2="60" y2="50"/>
+        <line x1="180" y1="150" x2="300" y2="60"/>
+        <line x1="180" y1="150" x2="70" y2="245"/>
+        <line x1="180" y1="150" x2="295" y2="240"/>
+        <line class="hot" x1="180" y1="150" x2="60" y2="50"/>
+        <line x1="60" y1="50" x2="300" y2="60" stroke-dasharray="4 5"/>
+        <line x1="70" y1="245" x2="295" y2="240" stroke-dasharray="4 5"/>
+        <circle class="core" cx="180" cy="150" r="18"/>
+        <circle class="hot" cx="60" cy="50" r="12"/>
+        <circle cx="300" cy="60" r="12"/>
+        <circle cx="70" cy="245" r="12"/>
+        <circle cx="295" cy="240" r="12"/>
+        <text x="60" y="26" text-anchor="middle">front-end</text>
+        <text x="300" y="36" text-anchor="middle">rrjeta</text>
+        <text x="70" y="278" text-anchor="middle">media sociale</text>
+        <text x="295" y="273" text-anchor="middle">AI</text>
+        <text x="180" y="190" text-anchor="middle">bleart</text>
+      </svg>
+    </section>
+
+    <section id="rreth" aria-labelledby="h-rreth">
+      <span class="label">Rreth meje</span>
+      <h2 id="h-rreth">Student i informatikës që ndërton gjëra për internet.</h2>
+      <div class="about">
+        <div>
+          <p>Jam Bleart, nga Prishtina. Kam përfunduar Bachelor-in në Shkenca Kompjuterike dhe Inxhinieri dhe kam ndjekur një kurs të plotë front-end.</p>
+          <p>Punoj me dizajn web dhe front-end, kam udhëhequr një projekt rrjetash dhe menaxhoj prani në Instagram, TikTok dhe Facebook. Përdor çdo ditë Cursor dhe Claude për të punuar më shpejt dhe më saktë.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Vendndodhja</dt><dd>Prishtinë, Kosovë</dd></div>
+          <div><dt>Arsimi</dt><dd>Bachelor, Shkenca Kompjuterike dhe Inxhinieri</dd></div>
+          <div><dt>Gjuhët</dt><dd>Shqip (amtare), Anglisht (rrjedhshëm)</dd></div>
+          <div><dt>Mjetet</dt><dd>Cursor, Claude</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="aftesi" aria-labelledby="h-aftesi">
+      <span class="label">Aftësi</span>
+      <h2 id="h-aftesi">Çfarë di të bëj.</h2>
+      <div class="skills">
+        <article class="skill">
+          <h3>Web dhe front-end</h3>
+          <p>Nga ideja dhe pamja te faqja që hapet në shfletues.</p>
+          <div class="tags"><span>dizajn web</span><span>front-end</span></div>
+        </article>
+        <article class="skill">
+          <h3>Rrjeta</h3>
+          <p>Kam udhëhequr një projekt rrjetash nga fillimi.</p>
+          <div class="tags"><span>rrjeta kompjuterike</span><span>udhëheqje projekti</span></div>
+        </article>
+        <article class="skill">
+          <h3>Media sociale</h3>
+          <p>Përmbajtje dhe prani në tri platformat kryesore.</p>
+          <div class="tags"><span>Instagram</span><span>TikTok</span><span>Facebook</span></div>
+        </article>
+        <article class="skill">
+          <h3>Punë me AI</h3>
+          <p>Përdorim i përditshëm në kod dhe në shkrim.</p>
+          <div class="tags"><span>Cursor</span><span>Claude</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="rruga" aria-labelledby="h-rruga">
+      <span class="label">Rruga ime</span>
+      <h2 id="h-rruga">Nga auditori te banka.</h2>
+      <div class="route">
+        <div class="head">$ traceroute bleart.racaj</div>
+        <div class="hop">
+          <span class="kind">arsimi</span>
+          <div>
+            <h3>Bachelor në Shkenca Kompjuterike dhe Inxhinieri</h3>
+            <p>Bazat e programimit, rrjetave dhe sistemeve kompjuterike.</p>
+          </div>
+          <span class="ok">përfunduar</span>
+        </div>
+        <div class="hop">
+          <span class="kind">kursi</span>
+          <div>
+            <h3>Kursi i front-end</h3>
+            <p>Trajnim praktik për ndërtimin e faqeve web.</p>
+          </div>
+          <span class="ok">përfunduar</span>
+        </div>
+        <div class="hop">
+          <span class="kind">praktika</span>
+          <div>
+            <h3>Praktikant në TEB Bank</h3>
+            <p>Departamenti i Mbrojtjes së të Dhënave.</p>
+          </div>
+          <span class="ok">përfunduar</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projekte" aria-labelledby="h-projekte">
+      <span class="label">Projekte</span>
+      <h2 id="h-projekte">Punë që mund të them me emër.</h2>
+      <div class="projects">
+        <article class="project">
+          <span class="label">Web</span>
+          <h3>Projekte dizajni web dhe front-end</h3>
+          <p>Faqe interneti që kam dizajnuar dhe ndërtuar vetë, nga struktura deri te pamja përfundimtare.</p>
+        </article>
+        <article class="project">
+          <span class="label">Rrjeta</span>
+          <h3>Projekt rrjetash, si udhëheqës</h3>
+          <p>Udhëhoqa një ekip në një projekt rrjetash: ndarje detyrash, planifikim dhe zbatim.</p>
+        </article>
+        <article class="project">
+          <span class="label">Media sociale</span>
+          <h3>Instagram, TikTok dhe Facebook</h3>
+          <p>Menaxhim përmbajtjeje dhe rritje e pranisë në tri platformat.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="kontakt" class="contact" aria-labelledby="h-kontakt">
+      <span class="label">Kontakt</span>
+      <h2 id="h-kontakt">Të punojmë së bashku?</h2>
+      <div class="mail">
+        <code id="email">bleartra12@gmail.com</code>
+        <button class="btn" id="copy" type="button">Kopjo adresën</button>
+      </div>
+      <small id="status" role="status">Shkruaj një email dhe do të përgjigjem.</small>
+    </section>
+  </main>
+
+  <footer class="label">
+    <span>Bleart Racaj</span>
+    <span>Prishtinë, Kosovë</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var code = document.getElementById('email');
+  var status = document.getElementById('status');
+  function select() {
+    var r = document.createRange(); r.selectNodeContents(code);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  btn.addEventListener('click', function () {
+    var text = code.textContent.trim();
+    var done = function () { status.textContent = 'Adresa u kopjua.'; };
+    var fail = function () { select(); status.textContent = 'Adresa u zgjodh, shtyp Ctrl+C për ta kopjuar.'; };
+    try {
+      navigator.clipboard.writeText(text).then(done, fail);
+    } catch (e) { fail(); }
+  });
+})();
+</script>
+</html>
